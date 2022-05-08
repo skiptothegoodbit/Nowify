@@ -112,9 +112,9 @@ export default {
         }
         </script>
 
-   * 	
-        	<script>
-        	
+   * <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   * 	<script>
         	    var xhr = new XMLHttpRequest();
         	
         	 $("div").click(function(e) {
