@@ -115,7 +115,7 @@ export default {
    * 		<script>
         		var xhr = new XMLHttpRequest();
         	
-        	 $("div").click(function(*e*) {
+        	 $("div").click(function(e) {
         	
         	  var url = "https://api.spotify.com/v1/me/player/next";
         	
