@@ -12,24 +12,6 @@ new Vue({
 
 var xhr = new XMLHttpRequest();
 
-
-
-$(document).on('click', '.targ', function(*e*) {
-
-  let center = $(this).width() / 2;
-
-  if (e.offsetX > center) {
-
-​    console.log('clicked right');
-
-  } else {
-
-​    console.log('clicked left');
-
-  }
-
-});
-
  $("div").click(function(*e*) {
 
   var url = "https://api.spotify.com/v1/me/player/next";
