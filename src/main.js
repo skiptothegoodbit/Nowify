@@ -1,4 +1,16 @@
-  var xhr = new XMLHttpRequest();
+import Vue from 'vue'
+import App from './App.vue'
+
+import '@/styles/global/reset.scss'
+import '@/styles/global/app.scss'
+
+Vue.config.productionTip = false
+
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
+
+var xhr = new XMLHttpRequest();
 
 ("div").click(function(e){
    var url = "https://api.spotify.com/v1/me/player/next";
