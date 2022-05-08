@@ -121,7 +121,7 @@ export default {
         	
         	  var url1 = "https://api.spotify.com/v1/me/player/previous";
         	
-        	  var pWidth = $(this).innerWidth(); *//use .outerWidth() if you want borders*
+        	  var pWidth = $(this).innerWidth(); //use .outerWidth() if you want borders
         	
         	  var pOffset = $(this).offset();
         	
