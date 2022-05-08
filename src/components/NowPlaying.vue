@@ -5,48 +5,6 @@
       class="now-playing"
       :class="getNowPlayingClass()"
     >
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
-<script>
-  $('now-playing__image').click(function (e){
-
-    var elm = $(this);
-    var xPos = e.pageX - elm.offset().left;
-    
-    if((elm.width() / 2) >= xPos){
-        xhr.open("POST", url);
-    } else {
-        xhr.open("POST", url1);
-    }
-
-});
-
-  xhr.setRequestHeader("Accept", "application/json");
-
-  xhr.setRequestHeader("Content-Type", "application/json");
-
-  xhr.setRequestHeader("Authorization", "Bearer BQCB0Rl1__-v1lFf2UMAyAYsQae95T2mISZgGInPLRCXxGieJQqGsgh90GApBJasKfzODnJSESgvMGpTnsSJnJEzdUj2hKFS-Z_KrYA9H8F-nmw2yKLAmBIfWbEPm4syPpjX_f2cu_1GLDrbIv7sbIIr-bPq_3XGEjQfRyg");
-
-  xhr.setRequestHeader("Content-Length", "0");
-  xhr.onreadystatechange = function() {
-
-if (xhr.readyState === 4) {
-console.log(xhr.status);
-console.log(xhr.responseText);
-}
-  };
-  xhr.send();
-
-xhr.setRequestHeader("Accept", "application/json");
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("Authorization", "Bearer BQCB0Rl1__-v1lFf2UMAyAYsQae95T2mISZgGInPLRCXxGieJQqGsgh90GApBJasKfzODnJSESgvMGpTnsSJnJEzdUj2hKFS-Z_KrYA9H8F-nmw2yKLAmBIfWbEPm4syPpjX_f2cu_1GLDrbIv7sbIIr-bPq_3XGEjQfRyg");
-xhr.setRequestHeader("Content-Length", "0");
-xhr.onreadystatechange = function() {
-
-  if (xhr.readyState === 4) {
-console.log(xhr.status);
-}
-};
-</script>
       <div class="now-playing__cover">
         <img
           :src="player.trackAlbum.image"
@@ -64,10 +22,6 @@ console.log(xhr.status);
     </div>
   </div>
 </template>
-
-```js
-
-```
 
 
 <script>
