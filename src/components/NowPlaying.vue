@@ -1,5 +1,4 @@
 <template>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <div id="app">
     <div
       v-if="player.playing"
@@ -25,6 +24,7 @@
 </template>
 
 ```js
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
 <script>
   $('now-playing__image').click(function (e){
 
