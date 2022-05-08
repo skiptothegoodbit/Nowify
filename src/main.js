@@ -10,21 +10,20 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-var xhr = new XMLHttpRequest();
-
-("div").click(function(e){
+   var xhr = new XMLHttpRequest();
+$("div").click(function(e){
    var url = "https://api.spotify.com/v1/me/player/next";
 
    var url1 = "https://api.spotify.com/v1/me/player/previous";
-   var pWidth = (this).innerWidth(); //use .outerWidth() if you want borders
-   var pOffset = (this).offset(); 
+   var pWidth = $(this).innerWidth(); //use .outerWidth() if you want borders
+   var pOffset = $(this).offset(); 
    var x = e.pageX - pOffset.left;
     if(pWidth/2 > x){
-      (this).text('left');
+      $(this).text('left')
       xhr.open("POST", url);
       }
     else{
-      (this).text('Right');
+      $(this).text('Right')
       xhr.open("POST", url1);
       }
           
@@ -57,4 +56,4 @@ xhr.onreadystatechange = function () {
    if (xhr.readyState === 4) {
       console.log(xhr.status);
       }
-};
+}
