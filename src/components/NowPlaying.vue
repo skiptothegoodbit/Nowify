@@ -65,7 +65,7 @@ xhr.onreadystatechange = function() {
 console.log(xhr.status);
 }
 };
-<\script>
+</script>
 ```
 
 
