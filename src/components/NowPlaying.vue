@@ -1,4 +1,5 @@
 <template>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <div id="app">
     <div
       v-if="player.playing"
@@ -22,6 +23,52 @@
     </div>
   </div>
 </template>
+
+```js
+<script>
+  $('now-playing__image').click(function (e){
+
+    var elm = $(this);
+    var xPos = e.pageX - elm.offset().left;
+
+    if((elm.width() / 2) >= xPos){
+        xhr.open("POST", url);
+    } else {
+        xhr.open("POST", url1);
+    }
+
+});
+
+  xhr.setRequestHeader("Accept", "application/json");
+
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.setRequestHeader("Authorization", "Bearer BQCB0Rl1__-v1lFf2UMAyAYsQae95T2mISZgGInPLRCXxGieJQqGsgh90GApBJasKfzODnJSESgvMGpTnsSJnJEzdUj2hKFS-Z_KrYA9H8F-nmw2yKLAmBIfWbEPm4syPpjX_f2cu_1GLDrbIv7sbIIr-bPq_3XGEjQfRyg");
+
+  xhr.setRequestHeader("Content-Length", "0");
+  xhr.onreadystatechange = function() {
+
+if (xhr.readyState === 4) {
+console.log(xhr.status);
+console.log(xhr.responseText);
+}
+  };
+  xhr.send();
+});
+
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer BQCB0Rl1__-v1lFf2UMAyAYsQae95T2mISZgGInPLRCXxGieJQqGsgh90GApBJasKfzODnJSESgvMGpTnsSJnJEzdUj2hKFS-Z_KrYA9H8F-nmw2yKLAmBIfWbEPm4syPpjX_f2cu_1GLDrbIv7sbIIr-bPq_3XGEjQfRyg");
+xhr.setRequestHeader("Content-Length", "0");
+xhr.onreadystatechange = function() {
+
+  if (xhr.readyState === 4) {
+console.log(xhr.status);
+}
+};
+<\script>
+```
+
 
 <script>
 import * as Vibrant from 'node-vibrant'
@@ -82,14 +129,14 @@ export default {
             }
           }
         )
-
+    
         /**
          * Fetch error.
          */
         if (!response.ok) {
           throw new Error(`An error has occured: ${response.status}`)
         }
-
+    
         /**
          * Spotify returns a 204 when no current device session is found.
          * The connection was successful but there's no content to return.
@@ -97,28 +144,28 @@ export default {
         if (response.status === 204) {
           data = this.getEmptyPlayer()
           this.playerData = data
-
+    
           this.$nextTick(() => {
             this.$emit('spotifyTrackUpdated', data)
           })
-
+    
           return
         }
-
+    
         data = await response.json()
         this.playerResponse = data
       } catch (error) {
         this.handleExpiredToken()
-
+    
         data = this.getEmptyPlayer()
         this.playerData = data
-
+    
         this.$nextTick(() => {
           this.$emit('spotifyTrackUpdated', data)
         })
       }
     },
-
+    
     /**
      * Get the Now Playing element class.
      * @return {String}
@@ -127,7 +174,7 @@ export default {
       const playerClass = this.player.playing ? 'active' : 'idle'
       return `now-playing--${playerClass}`
     },
-
+    
     /**
      * Get the colour palette from the album cover.
      */
@@ -138,7 +185,7 @@ export default {
       if (!this.player.trackAlbum?.image) {
         return
       }
-
+    
       /**
        * Run node-vibrant to get colours.
        */
@@ -150,7 +197,7 @@ export default {
           this.handleAlbumPalette(palette)
         })
     },
-
+    
     /**
      * Return a formatted empty object for an idle player.
      * @return {Object}
@@ -164,7 +211,7 @@ export default {
         trackTitle: ''
       }
     },
-
+    
     /**
      * Poll Spotify for data.
      */
@@ -174,7 +221,7 @@ export default {
         this.getNowPlaying()
       }, 2500)
     },
-
+    
     /**
      * Set the stylings of the app based on received colours.
      */
@@ -183,13 +230,13 @@ export default {
         '--color-text-primary',
         this.colourPalette.text
       )
-
+    
       document.documentElement.style.setProperty(
         '--colour-background-now-playing',
         this.colourPalette.background
       )
     },
-
+    
     /**
      * Handle newly updated Spotify Tracks.
      */
@@ -199,19 +246,19 @@ export default {
         this.playerResponse.error?.status === 400
       ) {
         this.handleExpiredToken()
-
+    
         return
       }
-
+    
       /**
        * Player is active, but user has paused.
        */
       if (this.playerResponse.is_playing === false) {
         this.playerData = this.getEmptyPlayer()
-
+    
         return
       }
-
+    
       /**
        * The newly fetched track is the same as our stored
        * one, we don't want to update the DOM yet.
@@ -219,7 +266,7 @@ export default {
       if (this.playerResponse.item?.id === this.playerData.trackId) {
         return
       }
-
+    
       /**
        * Store the current active track.
        */
@@ -236,7 +283,7 @@ export default {
         }
       }
     },
-
+    
     /**
      * Handle newly stored colour palette:
      * - Map data to readable format
@@ -253,17 +300,17 @@ export default {
             background: palette[colour].getHex()
           }
         })
-
+    
       this.swatches = albumColours
-
+    
       this.colourPalette =
         albumColours[Math.floor(Math.random() * albumColours.length)]
-
+    
       this.$nextTick(() => {
         this.setAppColours()
       })
     },
-
+    
     /**
      * Handle an expired access token from Spotify.
      */
@@ -288,13 +335,13 @@ export default {
     playerResponse: function() {
       this.handleNowPlaying()
     },
-
+    
     /**
      * Watch our locally stored track data.
      */
     playerData: function() {
       this.$emit('spotifyTrackUpdated', this.playerData)
-
+    
       this.$nextTick(() => {
         this.getAlbumColours()
       })
