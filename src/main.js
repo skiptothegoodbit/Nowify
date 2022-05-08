@@ -1,28 +1,18 @@
-import Vue from 'vue'
-import App from './App.vue'
+  var xhr = new XMLHttpRequest();
 
-import '@/styles/global/reset.scss'
-import '@/styles/global/app.scss'
-
-Vue.config.productionTip = false
-
-new Vue({
-  render: h => h(App)
-}).$mount('#app')
-
-$("div").click(function(e){
+("div").click(function(e){
    var url = "https://api.spotify.com/v1/me/player/next";
-   var xhr = new XMLHttpRequest();
+
    var url1 = "https://api.spotify.com/v1/me/player/previous";
-   var pWidth = $(this).innerWidth(); //use .outerWidth() if you want borders
-   var pOffset = $(this).offset(); 
+   var pWidth = (this).innerWidth(); //use .outerWidth() if you want borders
+   var pOffset = (this).offset(); 
    var x = e.pageX - pOffset.left;
     if(pWidth/2 > x){
-      $(this).text('left')
+      (this).text('left');
       xhr.open("POST", url);
       }
     else{
-      $(this).text('Right')
+      (this).text('Right');
       xhr.open("POST", url1);
       }
           
@@ -55,4 +45,4 @@ xhr.onreadystatechange = function () {
    if (xhr.readyState === 4) {
       console.log(xhr.status);
       }
-}
+};
