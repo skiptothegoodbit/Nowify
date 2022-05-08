@@ -10,50 +10,106 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-   var xhr = new XMLHttpRequest();
-$("div").click(function(e){
-   var url = "https://api.spotify.com/v1/me/player/next";
+var xhr = new XMLHttpRequest();
 
-   var url1 = "https://api.spotify.com/v1/me/player/previous";
-   var pWidth = $(this).innerWidth(); //use .outerWidth() if you want borders
-   var pOffset = $(this).offset(); 
-   var x = e.pageX - pOffset.left;
-    if(pWidth/2 > x){
-      $(this).text('left')
-      xhr.open("POST", url);
-      }
-    else{
-      $(this).text('Right')
-      xhr.open("POST", url1);
-      }
-          
-xhr.setRequestHeader("Accept", "application/json");
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("Authorization", "Bearer BQC8Z3I7T1dxTFY7l7jpbKI2bIcxzJmzY2Fr1B5XdzEYSmLwJFEqgwe8DQQo-YdCk_mytDneKfo4vR1RT9tjmctQ4_LvT6tOZOefMr7EVPwbe8jjyhnBm9TtGo_0csW6jBydbI_7hji9bsOE3gpuO4iyOQL1dTQhTnN6AEY");
-xhr.setRequestHeader("Content-Length", "0");
 
-xhr.onreadystatechange = function () {
-   if (xhr.readyState === 4) {
-      console.log(xhr.status);
-      console.log(xhr.responseText);
-   }};
 
-   
+$(document).on('click', '.targ', function(*e*) {
 
-xhr.send()
-;
+  let center = $(this).width() / 2;
+
+  if (e.offsetX > center) {
+
+​    console.log('clicked right');
+
+  } else {
+
+​    console.log('clicked left');
+
+  }
+
+});
+
+ $("div").click(function(*e*) {
+
+  var url = "https://api.spotify.com/v1/me/player/next";
+
+  var url1 = "https://api.spotify.com/v1/me/player/previous";
+
+  var pWidth = $(this).innerWidth(); *//use .outerWidth() if you want borders*
+
+  var pOffset = $(this).offset();
+
+  var x = e.pageX - pOffset.left;
+
+  if (pWidth / 2 > x) {
+
+​    $(this).text('left');
+
+​    xhr.open("POST", url);
+
+  } else {
+
+​    $(this).text('Right');
+
+​    xhr.open("POST", url1);
+
+  }
+
+
+
+  xhr.setRequestHeader("Accept", "application/json");
+
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.setRequestHeader("Authorization", "Bearer BQCB0Rl1__-v1lFf2UMAyAYsQae95T2mISZgGInPLRCXxGieJQqGsgh90GApBJasKfzODnJSESgvMGpTnsSJnJEzdUj2hKFS-Z_KrYA9H8F-nmw2yKLAmBIfWbEPm4syPpjX_f2cu_1GLDrbIv7sbIIr-bPq_3XGEjQfRyg");
+
+  xhr.setRequestHeader("Content-Length", "0");
+
+
+
+  xhr.onreadystatechange = function() {
+
+​    if (xhr.readyState === 4) {
+
+​      console.log(xhr.status);
+
+​      console.log(xhr.responseText);
+
+​    }
+
+  };
+
+
+
+
+
+  xhr.send();
+
 });
 
 
 
 
+
+
+
 xhr.setRequestHeader("Accept", "application/json");
+
 xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("Authorization", "Bearer BQC8Z3I7T1dxTFY7l7jpbKI2bIcxzJmzY2Fr1B5XdzEYSmLwJFEqgwe8DQQo-YdCk_mytDneKfo4vR1RT9tjmctQ4_LvT6tOZOefMr7EVPwbe8jjyhnBm9TtGo_0csW6jBydbI_7hji9bsOE3gpuO4iyOQL1dTQhTnN6AEY");
+
+xhr.setRequestHeader("Authorization", "Bearer BQCB0Rl1__-v1lFf2UMAyAYsQae95T2mISZgGInPLRCXxGieJQqGsgh90GApBJasKfzODnJSESgvMGpTnsSJnJEzdUj2hKFS-Z_KrYA9H8F-nmw2yKLAmBIfWbEPm4syPpjX_f2cu_1GLDrbIv7sbIIr-bPq_3XGEjQfRyg");
+
 xhr.setRequestHeader("Content-Length", "0");
 
-xhr.onreadystatechange = function () {
-   if (xhr.readyState === 4) {
-      console.log(xhr.status);
-      }
-}
+
+
+xhr.onreadystatechange = function() {
+
+  if (xhr.readyState === 4) {
+
+​    console.log(xhr.status);
+
+  }
+
+};

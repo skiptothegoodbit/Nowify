@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <template>
   <div id="app">
     <Component
@@ -89,7 +90,7 @@ export default {
     requestRefreshTokens() {
       this.auth.status = false
     },
-
+    
     /**
      * Update the player object.
      * @param {Object} value - Spotify playr object.
