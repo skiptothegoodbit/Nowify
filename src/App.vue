@@ -1,4 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <template>
   <div id="app">
     <Component
@@ -12,9 +11,12 @@
   </div>
 </template>
 
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<script>
 import Authorise from '@/components/Authorise'
 import NowPlaying from '@/components/NowPlaying'
+
 
 import { getStoredAuth, setStoredAuth } from '@/utils/utils.js'
 
@@ -103,10 +105,10 @@ export default {
   watch: {
     /**
      * Watch the authorisation status.
-     */
-    'auth.status': function() {
-      setStoredAuth(this.auth)
+          */
+        'auth.status': function() {
+            setStoredAuth(this.auth)
+        }
     }
-  }
 }
 </script>
