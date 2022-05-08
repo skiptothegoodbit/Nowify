@@ -102,16 +102,12 @@ export default {
   },
 
   watch: {
-    /**
-   * Watch the authorisation status.
-        /
-            'auth.status': function() {
-              setStoredAuth(this.auth)
-            }
-          }
-        }
-        </script>
-
+    'auth.status': function() {
+      setStoredAuth(this.auth)
+    }
+  }
+}
+</script>
    * <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
    * 	<script>
