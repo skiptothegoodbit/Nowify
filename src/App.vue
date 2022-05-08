@@ -11,8 +11,6 @@
   </div>
 </template>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 		<script>
 import Authorise from '@/components/Authorise'
 import NowPlaying from '@/components/NowPlaying'
