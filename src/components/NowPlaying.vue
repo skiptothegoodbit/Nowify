@@ -23,7 +23,6 @@
   </div>
 </template>
 
-
 <script>
 import * as Vibrant from 'node-vibrant'
 
@@ -83,14 +82,14 @@ export default {
             }
           }
         )
-    
+
         /**
          * Fetch error.
          */
         if (!response.ok) {
           throw new Error(`An error has occured: ${response.status}`)
         }
-    
+
         /**
          * Spotify returns a 204 when no current device session is found.
          * The connection was successful but there's no content to return.
@@ -98,28 +97,28 @@ export default {
         if (response.status === 204) {
           data = this.getEmptyPlayer()
           this.playerData = data
-    
+
           this.$nextTick(() => {
             this.$emit('spotifyTrackUpdated', data)
           })
-    
+
           return
         }
-    
+
         data = await response.json()
         this.playerResponse = data
       } catch (error) {
         this.handleExpiredToken()
-    
+
         data = this.getEmptyPlayer()
         this.playerData = data
-    
+
         this.$nextTick(() => {
           this.$emit('spotifyTrackUpdated', data)
         })
       }
     },
-    
+
     /**
      * Get the Now Playing element class.
      * @return {String}
@@ -128,7 +127,7 @@ export default {
       const playerClass = this.player.playing ? 'active' : 'idle'
       return `now-playing--${playerClass}`
     },
-    
+
     /**
      * Get the colour palette from the album cover.
      */
@@ -139,7 +138,7 @@ export default {
       if (!this.player.trackAlbum?.image) {
         return
       }
-    
+
       /**
        * Run node-vibrant to get colours.
        */
@@ -151,7 +150,7 @@ export default {
           this.handleAlbumPalette(palette)
         })
     },
-    
+
     /**
      * Return a formatted empty object for an idle player.
      * @return {Object}
@@ -165,7 +164,7 @@ export default {
         trackTitle: ''
       }
     },
-    
+
     /**
      * Poll Spotify for data.
      */
@@ -175,7 +174,7 @@ export default {
         this.getNowPlaying()
       }, 2500)
     },
-    
+
     /**
      * Set the stylings of the app based on received colours.
      */
@@ -184,13 +183,13 @@ export default {
         '--color-text-primary',
         this.colourPalette.text
       )
-    
+
       document.documentElement.style.setProperty(
         '--colour-background-now-playing',
         this.colourPalette.background
       )
     },
-    
+
     /**
      * Handle newly updated Spotify Tracks.
      */
@@ -200,19 +199,19 @@ export default {
         this.playerResponse.error?.status === 400
       ) {
         this.handleExpiredToken()
-    
+
         return
       }
-    
+
       /**
        * Player is active, but user has paused.
        */
       if (this.playerResponse.is_playing === false) {
         this.playerData = this.getEmptyPlayer()
-    
+
         return
       }
-    
+
       /**
        * The newly fetched track is the same as our stored
        * one, we don't want to update the DOM yet.
@@ -220,7 +219,7 @@ export default {
       if (this.playerResponse.item?.id === this.playerData.trackId) {
         return
       }
-    
+
       /**
        * Store the current active track.
        */
@@ -237,7 +236,7 @@ export default {
         }
       }
     },
-    
+
     /**
      * Handle newly stored colour palette:
      * - Map data to readable format
@@ -254,17 +253,17 @@ export default {
             background: palette[colour].getHex()
           }
         })
-    
+
       this.swatches = albumColours
-    
+
       this.colourPalette =
         albumColours[Math.floor(Math.random() * albumColours.length)]
-    
+
       this.$nextTick(() => {
         this.setAppColours()
       })
     },
-    
+
     /**
      * Handle an expired access token from Spotify.
      */
@@ -289,13 +288,13 @@ export default {
     playerResponse: function() {
       this.handleNowPlaying()
     },
-    
+
     /**
      * Watch our locally stored track data.
      */
     playerData: function() {
       this.$emit('spotifyTrackUpdated', this.playerData)
-    
+
       this.$nextTick(() => {
         this.getAlbumColours()
       })

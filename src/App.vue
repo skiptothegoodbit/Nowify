@@ -1,4 +1,3 @@
-
 <template>
   <div id="app">
     <Component
@@ -12,10 +11,9 @@
   </div>
 </template>
 
-		<script>
+<script>
 import Authorise from '@/components/Authorise'
 import NowPlaying from '@/components/NowPlaying'
-
 
 import { getStoredAuth, setStoredAuth } from '@/utils/utils.js'
 
@@ -91,7 +89,7 @@ export default {
     requestRefreshTokens() {
       this.auth.status = false
     },
-    
+
     /**
      * Update the player object.
      * @param {Object} value - Spotify playr object.
@@ -102,13 +100,12 @@ export default {
   },
 
   watch: {
+    /**
+     * Watch the authorisation status.
+     */
     'auth.status': function() {
       setStoredAuth(this.auth)
     }
   }
 }
 </script>
-
-   * 	
-
-   * 
