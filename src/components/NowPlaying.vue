@@ -5,32 +5,13 @@
       class="now-playing"
       :class="getNowPlayingClass()"
     >
-      <div class="now-playing__cover">
-        <img
-          :src="player.trackAlbum.image"
-          :alt="player.trackTitle"
-          class="now-playing__image"
-        />
-      </div>
-      <div class="now-playing__details">
-        <h1 class="now-playing__track" v-text="player.trackTitle"></h1>
-        <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
-      </div>
-    </div>
-    <div v-else class="now-playing" :class="getNowPlayingClass()">
-      <h1 class="now-playing__idle-heading">No music is playing 😔</h1>
-    </div>
-  </div>
-</template>
-
-```js
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
 <script>
   $('now-playing__image').click(function (e){
 
     var elm = $(this);
     var xPos = e.pageX - elm.offset().left;
-
+    
     if((elm.width() / 2) >= xPos){
         xhr.open("POST", url);
     } else {
@@ -66,6 +47,26 @@ console.log(xhr.status);
 }
 };
 </script>
+      <div class="now-playing__cover">
+        <img
+          :src="player.trackAlbum.image"
+          :alt="player.trackTitle"
+          class="now-playing__image"
+        />
+      </div>
+      <div class="now-playing__details">
+        <h1 class="now-playing__track" v-text="player.trackTitle"></h1>
+        <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
+      </div>
+    </div>
+    <div v-else class="now-playing" :class="getNowPlayingClass()">
+      <h1 class="now-playing__idle-heading">No music is playing 😔</h1>
+    </div>
+  </div>
+</template>
+
+```js
+
 ```
 
 
